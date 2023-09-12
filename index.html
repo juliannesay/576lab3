@@ -18,8 +18,9 @@
     "esri/Map",
     "esri/views/MapView",
     "esri/widgets/BasemapGallery",
-    "esri/widgets/Locate"
-], function(esriConfig, Map, MapView, BasemapGallery, Locate) { 
+    "esri/widgets/Locate",
+    "esri/widgets/Search"
+], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search) { 
   
   esriConfig.apiKey = "AAPK86a0d5325df043d7878146eca4d4d247grl7C2jYdexMMLYxB9UvVw4tyLRSPmD38pG-xRa0N7jiyB56hho9VAphdXvtiBBH"
   const map = new Map({ 
@@ -31,6 +32,15 @@
  center: [-76.08061, 36.77917], // Longitude, latitude
  zoom: 10, // Zoom level
  container: "viewDiv" // Div element
+});
+
+//add the search widget
+let searchwidget = new Search({
+  view: view
+});
+
+view.ui.add(searchwidget, {
+  position: "top-right"
 });
 
 //add the basemap gallery
