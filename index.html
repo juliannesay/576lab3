@@ -17,8 +17,9 @@
   "esri/config",
     "esri/Map",
     "esri/views/MapView",
-    "esri/widgets/BasemapGallery"
-], function(esriConfig, Map, MapView, BasemapGallery) { 
+    "esri/widgets/BasemapGallery",
+    "esri/widgets/Locate"
+], function(esriConfig, Map, MapView, BasemapGallery, Locate) { 
   
   esriConfig.apiKey = "AAPK86a0d5325df043d7878146eca4d4d247grl7C2jYdexMMLYxB9UvVw4tyLRSPmD38pG-xRa0N7jiyB56hho9VAphdXvtiBBH"
   const map = new Map({ 
@@ -38,6 +39,14 @@ let basemapGallery = new BasemapGallery({
 });
 // Add widget to the top right corner of the view
 view.ui.add(basemapGallery, {
+  position: "top-right"
+});
+
+// add the locate widget
+let locatebutton = new Locate({
+  view: view
+});
+view.ui.add(locatebutton, {
   position: "top-right"
 });
 
