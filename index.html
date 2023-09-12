@@ -30,6 +30,16 @@
  zoom: 10, // Zoom level
  container: "viewDiv" // Div element
 });
+
+//add the basemap gallery
+let basemapGallery = new BasemapGallery({
+  view: view
+});
+// Add widget to the top right corner of the view
+view.ui.add(basemapGallery, {
+  position: "top-right"
+});
+
  });  
 </script>
 
