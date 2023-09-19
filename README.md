@@ -1,2 +1,2 @@
-# 576lab1
-Repository for Lab 1
+# 576lab2
+Repository for Lab 2
