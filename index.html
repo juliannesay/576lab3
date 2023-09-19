@@ -19,8 +19,10 @@
     "esri/views/MapView",
     "esri/widgets/BasemapGallery",
     "esri/widgets/Locate",
-    "esri/widgets/Search"
-], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search) { 
+    "esri/widgets/Search",
+    "esri/Graphic",  
+    "esri/layers/GraphicsLayer",   
+], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer) { 
   
   esriConfig.apiKey = "AAPK86a0d5325df043d7878146eca4d4d247grl7C2jYdexMMLYxB9UvVw4tyLRSPmD38pG-xRa0N7jiyB56hho9VAphdXvtiBBH"
   const map = new Map({ 
@@ -34,6 +36,31 @@
  container: "viewDiv" // Div element
 });
 
+//adding the constructor for the graphicslayer
+    const graphicsLayer = new GraphicsLayer();  
+    map.add(graphicsLayer);
+
+    const point = { //Create a point  
+      type: "point",  
+      longitude: -75.97723,    //long lat of Neptune Statue
+      latitude: 36.85955
+    };
+
+    const simpleMarkerSymbol = {  
+      type: "simple-marker",  
+      color: [0, 0, 139],  // Color of blues rock
+      outline: {  
+        color: [255, 255, 255], // White  
+        width: 1
+      }  
+    };
+
+    const pointGraphic = new Graphic({  
+      geometry: point,  
+      symbol: simpleMarkerSymbol  
+    });
+
+    graphicsLayer.add(pointGraphic);
 //add the search widget
 let searchwidget = new Search({
   view: view
