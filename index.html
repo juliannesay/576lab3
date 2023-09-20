@@ -22,8 +22,8 @@
     "esri/widgets/Search",
     "esri/Graphic",  
     "esri/layers/GraphicsLayer",
-    "esri/layers/Polyline",
-    "esri/layers/Polygon"
+    "esri/geometry/Polyline",
+    "esri/geometry/Polygon"
 ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, Polyline, Polygon) { 
   
   esriConfig.apiKey = "AAPK86a0d5325df043d7878146eca4d4d247grl7C2jYdexMMLYxB9UvVw4tyLRSPmD38pG-xRa0N7jiyB56hho9VAphdXvtiBBH"
@@ -37,6 +37,45 @@
  zoom: 8, // Zoom level
  container: "viewDiv" // Div element
 });
+
+//add polygon
+const polygon = {
+      type: "polygon",
+      rings: [[[-76.05797701227955, 36.916760797083775], [-76.04470218805615, 36.92519985405996], [-76.04326274928493, 36.921491898601595], [-76.02151123007549, 36.9195739198498], [-76.0019988378435, 36.90985541944087], [-76.00007958614856, 36.912413039609554], [-75.99768052152987, 36.91292455335255], [-75.9904833276738, 36.888240105386494], [-76.00471777774469, 36.885169978548234], [-76.01879229017432, 36.89143802289369], [-76.03158730147398, 36.905763048802875], [-76.04134349758998, 36.909983302486], [-76.05205931955345, 36.909599652707485], [-76.05797701227955, 36.916760797083775]]]
+    };
+
+    const polygonSymbol = {
+      type: "simple-fill",
+      color: [227, 139, 79, 0.8],  // Orange, semi-transparent
+      style: "solid",
+      outline: {
+        color: [255, 255, 255],
+        width: 1
+      }
+    };
+
+    const polygonGraphic = new Graphic({
+      geometry: polygon,
+      symbol: polygonSymbol
+    });
+    graphicsLayer.add(polygonGraphic);
+
+    const polyline = {
+      type: "polyline",
+      paths: [[[-76.13016975147919, 36.91808468334586], [-76.08687640973562, 37.02867426691002], [-76.01282200938479, 37.0805004029274], [-75.97465551074244, 37.092769829096476]]]
+    };
+
+    const polylineSymbol = {
+      type: "simple-line",
+      color: [0, 0, 255, 1],  // Blue
+      width: 2
+    };
+
+    const polylineGraphic = new Graphic({
+      geometry: polyline,
+      symbol: polylineSymbol
+    });
+    graphicsLayer.add(polylineGraphic);
 
 //adding the constructor for the graphicslayer
     const graphicsLayer = new GraphicsLayer();  
@@ -75,6 +114,8 @@
 
       attributes: attributes,
       popupTemplate: popupTemplate
+    
+    
     });
 
     graphicsLayer.add(pointGraphic);
