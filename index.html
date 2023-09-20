@@ -122,8 +122,25 @@ const polygon = {
     });
     graphicsLayer.add(polylineGraphic);
 
-    // Define a pop-up for usaeduLayer
-    const popupEduusa = {
+    // Define a pop-up for Airport
+    const popupAirport = {
+     "title": "Airport",
+     "content": "<b>Name:</b> {Fss_Name}<br><b>Facility Code:</b> {Fss_Id}<br><b>Facility Type:</b> {Fac_Type}<br>"
+
+    //adding the point to the graphics layer
+    const airportLayer = new FeatureLayer({
+      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_JMS/FeatureServer",
+    
+    //adding the popup here
+    outFields: ["NAME", "Fss_Name", "Fss_Id", "Fac_Type"],
+    popupTemplate: popupAirport
+    });
+
+    //adding the constructor for the feature layer
+    map.add(airportLayer);
+
+     // Define a pop-up for usaeduLayer
+     const popupEduusa = {
      "title": "EDUs",
      "content": "<b>Name:</b> {NAME}<br><b>Address:</b> {ADDRESS}<br><b>City:</b> {CITY}<br><b>State:</b> {STATE}<br><b>ZIP Code:</b> {ZIP}<br><b>Telephone:</b> {TELEPHONE}<br><b>Website:</b> <a href='{WEBSITE}' target='_blank'>{WEBSITE}</a><br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
 }
@@ -138,7 +155,7 @@ const polygon = {
     });
 
     //adding the constructor for the feature layer
-    map.add(usaeduLayer);
+    map.add(popupEduusa);
 
 //add the search widget
 let searchwidget = new Search({
