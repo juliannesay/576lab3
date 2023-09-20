@@ -192,6 +192,58 @@ const airportLabels = {
      //adding the constructor for the feature layer
      map.add(usaeduLayer);
 
+     // Define a pop-up for airportLayer
+const popupHellipad = {
+ "title": "Flight Facility",
+ "content": "<b>Facility Type:</b> {Fac_Type}<br>"
+}
+
+//setting up the icon
+const hellipadRenderer = {
+    "type": "simple",
+    "symbol": {
+      "type": "picture-marker",
+      "url": "https://github.com/juliannesay/576lab2/blob/753fddc0e899acdff32a32745659aab0178707cc/outline_adjust_black_24dp.png",
+      "width": "18px",
+      "height": "18px"
+    }
+  }
+
+  //const to make the airport labels
+const hellipadLabels = {
+symbol: {
+type: "text",
+color: "#FFFFFF",
+haloColor: "#5E8D74",
+haloSize: "2px",
+font: {
+  size: "12px",
+  family: "Noto Sans",
+  style: "italic",
+  weight: "normal"
+}
+},
+labelPlacement: "above-center",
+labelExpressionInfo: {
+expression: "$feature.Fac_Name"
+}
+};
+
+//adding the point to the graphics layer
+const hellipadLayer = new FeatureLayer({
+  url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_JMS/FeatureServer",
+  renderer: hellipadRenderer, //calling the icon
+  definitionExpression: "Fac_Type = 'HELIPORT'", //adding sql to filter for airports
+  labelingInfo: [hellipadLabels], //adding the labels
+
+//adding the popup here
+outFields: ["Fac_Type"],
+popupTemplate: popupHellipad
+});
+
+//adding the constructor for the feature layer
+map.add(HellipadLayer);
+
 //add the search widget
 let searchwidget = new Search({
   view: view
