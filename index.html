@@ -23,8 +23,10 @@
     "esri/Graphic",  
     "esri/layers/GraphicsLayer",
     "esri/geometry/Polyline",
-    "esri/geometry/Polygon"
-], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, Polyline, Polygon) { 
+    "esri/geometry/Polygon",
+    //adding in the module for the feature layers
+    "esri/layers/FeatureLayer"
+], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer) { 
   
   esriConfig.apiKey = "AAPK86a0d5325df043d7878146eca4d4d247grl7C2jYdexMMLYxB9UvVw4tyLRSPmD38pG-xRa0N7jiyB56hho9VAphdXvtiBBH"
   const map = new Map({ 
@@ -119,7 +121,15 @@ const polygon = {
       symbol: polylineSymbol
     });
     graphicsLayer.add(polylineGraphic);
-    
+
+    //adding the point to the graphics layer
+    const usaeduLayer = new FeatureLayer({
+      url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
+    });
+
+    //adding the constructor for the feature layer
+    map.add(usaeduLayer);
+
 //add the search widget
 let searchwidget = new Search({
   view: view
