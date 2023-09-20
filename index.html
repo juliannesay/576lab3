@@ -125,7 +125,7 @@ const polygon = {
     // Define a pop-up for Airport
     const popupAirport = {
      "title": "Airport",
-     "content": "<b>Name:</b> {Fss_Name}<br><b>Facility Code:</b> {Fss_Id}<br><b>Facility Type:</b> {Fac_Type}<br>"
+     "content": "<b>Name:</b> {Fss_Name}<br><b>Facility Code:</b> {Fss_Id}<br><b>Facility Type:</b> {Fac_Type}<br>",
 
     //adding the point to the graphics layer
     const airportLayer = new FeatureLayer({
@@ -155,7 +155,7 @@ const polygon = {
     });
 
     //adding the constructor for the feature layer
-    map.add(popupEduusa);
+    map.add(usaeduLayer);
 
 //add the search widget
 let searchwidget = new Search({
