@@ -21,8 +21,10 @@
     "esri/widgets/Locate",
     "esri/widgets/Search",
     "esri/Graphic",  
-    "esri/layers/GraphicsLayer",   
-], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer) { 
+    "esri/layers/GraphicsLayer",
+    "esri/layers/Polyline",
+    "esri/layers/Polygon"
+], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, Polyline, Polygon) { 
   
   esriConfig.apiKey = "AAPK86a0d5325df043d7878146eca4d4d247grl7C2jYdexMMLYxB9UvVw4tyLRSPmD38pG-xRa0N7jiyB56hho9VAphdXvtiBBH"
   const map = new Map({ 
@@ -32,7 +34,7 @@
   const view = new MapView({
  map: map,
  center: [-76.08061, 36.77917], // Longitude, latitude
- zoom: 10, // Zoom level
+ zoom: 8, // Zoom level
  container: "viewDiv" // Div element
 });
 
