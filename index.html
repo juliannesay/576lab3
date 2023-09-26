@@ -179,7 +179,8 @@ const airportLabels = {
      // Define a pop-up for usaeduLayer
      const popupEduusa = {
      "title": "EDUs",
-     "content": "<b>Name:</b> {NAME}<br><b>Address:</b> {ADDRESS}<br><b>City:</b> {CITY}<br><b>State:</b> {STATE}<br><b>ZIP Code:</b> {ZIP}<br><b>Telephone:</b> {TELEPHONE}<br><b>Website:</b> <a href='{WEBSITE}' target='_blank'>{WEBSITE}</a><br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+     "content": "<b>Name:</b> {INSTNM}<br><b>Address:</b> {ADDR}<br><b>City:</b> {CITY}<br><b>State:</b> {STABBR}<br><b>ZIP Code:</b> {ZIP}<br><b>Telephone:</b> {GENTELE}<br><b>Website:</b> <a href='{WEBADDR}' target='_blank'>{WEBADDR}</a><br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+
 }
 
     //adding the point to the graphics layer
@@ -187,7 +188,7 @@ const airportLabels = {
       url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
     
     //adding the popup here
-    outFields: ["NAME", "ADDRESS", "CITY", "STATE", "ZIP", "TELEPHONE", "WEBSITE", "TOT_ENROLL"],
+    outFields: ["INSTNM", "ADDR", "CITY", "STABBR", "ZIP", "GENTELE", "WEBADDR", "TOT_ENROLL"],
     popupTemplate: popupEduusa
     });
 
