@@ -25,8 +25,10 @@
     "esri/geometry/Polyline",
     "esri/geometry/Polygon",
     //adding in the module for the feature layers
-    "esri/layers/FeatureLayer"
-], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer) { 
+    "esri/layers/FeatureLayer",
+    //adding editor widget
+    "esri/widgets/Editor"
+], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer, Editor) { 
   
   esriConfig.apiKey = "AAPK86a0d5325df043d7878146eca4d4d247grl7C2jYdexMMLYxB9UvVw4tyLRSPmD38pG-xRa0N7jiyB56hho9VAphdXvtiBBH"
   const map = new Map({ 
@@ -269,6 +271,32 @@ let locatebutton = new Locate({
 view.ui.add(locatebutton, {
   position: "top-left"
 });
+
+//adding the const for the feature layer
+const myAirports = new FeatureLayer({
+ url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/My_Airports_JMS/FeatureServer",
+ 
+ //adding the popup here
+ outFields: ["AirportCode"],
+
+});
+
+//adding the feature layer to the map
+map.add(myAirports);
+
+// Set the point layer's LayerInfo
+const pointInfos = {
+ layer: myAirports
+}
+
+// Begin Editor constructor
+const editor = new Editor({
+ view: view,
+ layerInfos: [pointInfos]
+ }); // End Editor constructor
+
+// Add the widget to the view
+view.ui.add(editor, "top-right");
 
  });  
 </script>
