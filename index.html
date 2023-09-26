@@ -260,6 +260,7 @@ let basemapGallery = new BasemapGallery({
   view: view
 });
 // Add widget to the top right corner of the view
+basemapGallery.container = "basemapGalleryDiv";
 view.ui.add(basemapGallery, {
   position: "bottom-left"
 });
@@ -319,5 +320,24 @@ view.ui.add(editor, "top-right");
 
   <!-- the div to display the map -->
   <div id="viewDiv"></div>
+  <div id="basemapContainer">
+    <button id="toggleBasemap" onclick="toggleBasemapGallery()">Basemap Gallery</button>
+    <div id="basemapGalleryDiv" style="display: none;"></div>
+  </div>
+  
 </body>
 </html>
+
+<script>
+  /*the toggle is adapted from: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
+  this block of code allows the div for the Basemap Gallery to be toggled on and off
+  it will be off by default*/
+  function toggleBasemapGallery() {
+  const galleryDiv = document.getElementById('basemapGalleryDiv');
+  if (galleryDiv.style.display === 'none') {
+    galleryDiv.style.display = 'block';
+  } else {
+    galleryDiv.style.display = 'none';
+  }
+}
+</script>
