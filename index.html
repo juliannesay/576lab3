@@ -27,8 +27,9 @@
     //adding in the module for the feature layers
     "esri/layers/FeatureLayer",
     //adding editor widget
-    "esri/widgets/Editor"
-], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer, Editor) { 
+    "esri/widgets/Editor",
+    "esri/widgets/Legend"
+], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer, Polyline, Polygon, FeatureLayer, Editor, Legend) { 
   
   esriConfig.apiKey = "AAPK86a0d5325df043d7878146eca4d4d247grl7C2jYdexMMLYxB9UvVw4tyLRSPmD38pG-xRa0N7jiyB56hho9VAphdXvtiBBH"
   const map = new Map({ 
@@ -338,6 +339,28 @@ const editor = new Editor({
 
 // Add the widget to the view
 view.ui.add(editor, "top-right");
+
+// Initialize the Legend widget
+let legend = new Legend({
+    view: view,
+    layerInfos: [{
+        layer: myairportLayer,
+        title: "Airports"
+    }, 
+    {
+            layer: hellipadLayer,
+            title: "Helipads"
+        },{
+        layer: usaeduLayer,
+        title: "Educational Institutions"
+    }, {
+            layer: graphicsLayer,
+            title: "Points of Interest"
+        }]
+});
+
+// Add the legend to the bottom right of the view
+view.ui.add(legend, "bottom-right");
 
  });  
 </script>
